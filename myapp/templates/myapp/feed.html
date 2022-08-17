@@ -1,0 +1,8 @@
+<!-- myapp/templates/myapp/feed.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<p><a href="{% url 'create-ticket' %}"><button type="submit">Demander une critique</button></a></p>
+<p><a href="{% url 'create-review' %}"><button type="submit">Créer une critique</button></a></p>
+{% endblock content %}
