@@ -34,5 +34,12 @@ urlpatterns = [
     ),
     path("logout/", LogoutView.as_view(), name="logout"),
     path("signup/", authentication.views.signup_page, name="signup"),
-    path("index/", myapp.views.index, name="index"),
+    path("feed/", myapp.views.feed, name="feed"),
+    path("my_posts/", myapp.views.my_posts, name="my-posts"),
+    path("subscriptions/", myapp.views.subscriptions, name="subscriptions"),
+    path("create_review/", myapp.views.create_review, name="create-review"),
+    path("create_ticket/", myapp.views.create_ticket, name="create-ticket"),
+    path("change_review/", myapp.views.change_review, name="change-review"),
+    path("change_ticket/", myapp.views.change_ticket, name="change-ticket"),
+    path("ticket_review/", myapp.views.ticket_review, name="ticket-review"),
 ]
