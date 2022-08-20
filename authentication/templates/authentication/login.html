@@ -4,10 +4,13 @@
 {% block content %}
 
 <form method="post">
+    <h2>Connectez-vous</h2>
     {{ form.as_p }}
     {% csrf_token %}
     <button type="submit">Se connecter</button>
-    <p>Pas encore membre ? <a href="{% url 'signup' %}">Inscrivez-vous maintenant !</a></p>
 </form>
+
+<h2>Inscrivez-vous maintenant</h2>
+<p><a href="{% url 'signup' %}"><button type="submit">S'inscrire</button></a></p>
 
 {% endblock content %}
