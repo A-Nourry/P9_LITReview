@@ -1,0 +1,36 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(65, 104, 148);
+    color: aliceblue;
+}
+
+.navbar {
+    background-color: rgb(27, 60, 97);
+    border-bottom: 10px;
+}
+
+.btn-custom {
+    background-color: rgb(27, 60, 97);
+    color: aliceblue;
+}
+
+#brand {
+    font-size: 30px;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: white;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgb(27, 60, 97);
+    border-radius: 4px/4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(27, 60, 97);
+  }
