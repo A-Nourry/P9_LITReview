@@ -21,4 +21,4 @@ class Review(models.Model):
     original_poster = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE
     )
-    ticket = models.ForeignKey(Ticket, null=True, on_delete=models.SET_NULL, blank=True)
+    ticket = models.OneToOneField(Ticket, on_delete=models.CASCADE, primary_key=True)
