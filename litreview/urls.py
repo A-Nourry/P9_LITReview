@@ -19,6 +19,8 @@ from django.contrib.auth.views import (
     LoginView,
     LogoutView,
 )
+from django.conf import settings
+from django.conf.urls.static import static
 
 import authentication.views
 import myapp.views
@@ -41,5 +43,10 @@ urlpatterns = [
     path("create_ticket/", myapp.views.create_ticket, name="create-ticket"),
     path("change_review/", myapp.views.change_review, name="change-review"),
     path("change_ticket/", myapp.views.change_ticket, name="change-ticket"),
-    path("ticket_review/", myapp.views.ticket_review, name="ticket-review"),
+    path(
+        "ticket/<int:ticket_id>/review", myapp.views.ticket_review, name="ticket-review"
+    ),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
