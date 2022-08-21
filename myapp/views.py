@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from . import forms, models
@@ -79,5 +79,21 @@ def change_ticket(request):
 
 
 @login_required
-def ticket_review(request):
-    return render(request, "myapp/ticket_review.html")
+def ticket_review(request, ticket_id):
+    review_form = forms.ReviewForm()
+    ticket = get_object_or_404(models.Ticket, id=ticket_id)
+    if request.method == "POST":
+        review_form = forms.ReviewForm(request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.original_poster = request.user
+            review.ticket = ticket
+            review.save()
+
+            return redirect("feed")
+
+    context = {
+        "review_form": review_form,
+        "ticket": ticket,
+    }
+    return render(request, "myapp/ticket_review.html", context=context)
