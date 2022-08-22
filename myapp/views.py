@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 from . import forms, models
 
 
 @login_required
 def feed(request):
-    reviews = models.Review.objects.all()
-    tickets = models.Ticket.objects.all()
+    reviews = models.Review.objects.filter(
+        Q(original_poster__in=request.user.follows.all())
+    )
+    tickets = models.Ticket.objects.filter(requester__in=request.user.follows.all())
 
     context = {
         "reviews": reviews,
@@ -18,12 +21,32 @@ def feed(request):
 
 @login_required
 def my_posts(request):
-    return render(request, "myapp/my_posts.html")
+    reviews = models.Review.objects.filter(Q(original_poster__in=request.user.id()))
+    tickets = models.Ticket.objects.filter(requester__in=request.user.id())
+
+    context = {
+        "reviews": reviews,
+        "tickets": tickets,
+    }
+    return render(request, "myapp/my_posts.html", context=context)
 
 
 @login_required
 def subscriptions(request):
-    return render(request, "myapp/subscriptions.html")
+    users_followed = request.user.follows
+    form = forms.FollowUsersForm(instance=request.user)
+    if request.method == "POST":
+        form = forms.FollowUsersForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect("subscriptions")
+
+    context = {
+        "form": form,
+        "users": users_followed,
+    }
+
+    return render(request, "myapp/subscriptions.html", context=context)
 
 
 @login_required
@@ -69,13 +92,52 @@ def create_ticket(request):
 
 
 @login_required
-def change_review(request):
-    return render(request, "myapp/change_review.html")
+def change_review(request, review_id):
+    review = get_object_or_404(models.Review, ticket_id=review_id)
+    ticket = get_object_or_404(models.Ticket, id=review_id)
+    edit_form = forms.ReviewForm(instance=review)
+    delete_form = forms.DeletePostForm()
+    if request.method == "POST":
+        if "edit_review" in request.POST:
+            edit_form = forms.ReviewForm(request.POST, instance=review)
+            if edit_form.is_valid():
+                edit_form.save()
+                return redirect("feed")
+        if "delete_post" in request.POST:
+            delete_form = forms.DeletePostForm(request.POST)
+            if delete_form.is_valid():
+                review.delete()
+                return redirect("feed")
+    context = {
+        "edit_form": edit_form,
+        "delete_form": delete_form,
+        "ticket": ticket,
+    }
+    return render(request, "myapp/change_review.html", context=context)
 
 
 @login_required
-def change_ticket(request):
-    return render(request, "myapp/change_ticket.html")
+def change_ticket(request, ticket_id):
+    ticket = get_object_or_404(models.Ticket, id=ticket_id)
+    edit_form = forms.TicketForm(instance=ticket)
+    delete_form = forms.DeletePostForm()
+    if request.method == "POST":
+        if "edit_ticket" in request.POST:
+            edit_form = forms.TicketForm(request.POST, request.FILES, instance=ticket)
+            if edit_form.is_valid():
+                edit_form.save()
+                return redirect("feed")
+        if "delete_post" in request.POST:
+            delete_form = forms.DeletePostForm(request.POST)
+            if delete_form.is_valid():
+                ticket.delete()
+                return redirect("feed")
+    context = {
+        "edit_form": edit_form,
+        "delete_form": delete_form,
+        "ticket": ticket,
+    }
+    return render(request, "myapp/change_ticket.html", context=context)
 
 
 @login_required
