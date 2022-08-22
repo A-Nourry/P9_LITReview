@@ -10,6 +10,7 @@ class Ticket(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="demandeur"
     )
     image = models.ImageField(verbose_name="image")
+    date_created = models.DateTimeField(auto_now_add=True)
 
 
 class Review(models.Model):
@@ -21,4 +22,5 @@ class Review(models.Model):
     original_poster = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE
     )
+    date_created = models.DateTimeField(auto_now_add=True)
     ticket = models.OneToOneField(Ticket, on_delete=models.CASCADE, primary_key=True)
