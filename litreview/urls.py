@@ -41,8 +41,12 @@ urlpatterns = [
     path("subscriptions/", myapp.views.subscriptions, name="subscriptions"),
     path("create_review/", myapp.views.create_review, name="create-review"),
     path("create_ticket/", myapp.views.create_ticket, name="create-ticket"),
-    path("change_review/", myapp.views.change_review, name="change-review"),
-    path("change_ticket/", myapp.views.change_ticket, name="change-ticket"),
+    path(
+        "review/<int:review_id>/edit", myapp.views.change_review, name="change-review"
+    ),
+    path(
+        "ticket/<int:ticket_id>/edit", myapp.views.change_ticket, name="change-ticket"
+    ),
     path(
         "ticket/<int:ticket_id>/review", myapp.views.ticket_review, name="ticket-review"
     ),
