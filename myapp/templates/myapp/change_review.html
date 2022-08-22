@@ -3,5 +3,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h2>Modifier votre critique</h2>
+<p>Ticket - {{ ticket.requester }}</p>
+<p>{{ ticket.title }}</p>
+<p>{{ ticket.description }}</p>
+<p><img src="{{ ticket.image.url }}" /></p>
 
+<form method="post">
+    {{ edit_form.as_p }}
+    {% csrf_token %}
+    <button type="submit" >Envoyer</button>
+</form>
+<form method="post">
+    {{ delete_form.as_p }}
+    {% csrf_token %}
+    <button type="submit" >Supprimer</button>
+</form>
 {% endblock content %}
