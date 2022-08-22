@@ -3,35 +3,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container butn">
-    <p><a href="{% url 'create-ticket' %}"><button type="button" class="btn btn-custom">Demander une critique</button></a></p>
-    <p><a href="{% url 'create-review' %}"><button type="button" class="btn btn-custom">Créer une critique</button></a></p>
+<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <p><a href="{% url 'create-ticket' %}"><button type="button" class="btn btn-custom">Demander une
+                critique</button></a></p>
+    <p><a href="{% url 'create-review' %}"><button type="button" class="btn btn-custom">Créer une critique</button></a>
+    </p>
 </div>
 
 <div class="container main_feed">
-    <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
 
 
-        {% for review in reviews %}
-        <p>{{ review.title }} - {{ review.rating }}</p>
-        <p>{{ review.comment }}</p>
-        <p>Posté par {{ review.original_poster }}</p>
-        <p>Ticket - {{ review.ticket.requester }}</p>
-        <p>{{ review.ticket.title }}</p>
-        <p>{{ review.ticket.description }}</p>
-        <p><img src="{{ review.ticket.image.url }}" /></p>
-        {% endfor %}
+            {% for review in reviews %}
+            <p>{{ review.date_created }}</p>
+            <p>{{ review.title }} - {{ review.rating }}</p>
+            <p>{{ review.comment }}</p>
+            <p>Posté par {{ review.original_poster }}</p>
+            <div class="col-md-6">
+                <p>Ticket - {{ review.ticket.requester }}</p>
+                <p>{{ review.ticket.title }}</p>
+                <p>{{ review.ticket.description }}</p>
+                <p><img src="{{ review.ticket.image.url }}" /></p>
+            </div>
+            <p><a href="{% url 'change-review' review.ticket_id %}"><button type="button" class="btn btn-dark">Modifier</button></a></p>
+            {% endfor %}
 
-        {% for ticket in tickets %}
-        <p>{{ ticket.requester }} à demandé une critique</p>
-        <p>{{ ticket.title }}</p>
-        <p>{{ ticket.description }}</p>
-        <p><img src="{{ ticket.image.url }}" /></p>
-        {% if not ticket.review %}
-        <p><a href="{% url 'ticket-review' ticket.id %}"><button type="button" class="btn btn-dark">Créer une critique</button></a></p>
-        {% endif %}
-        {% endfor %}
+            {% for ticket in tickets %}
+            <p>{{ ticket.date_created }}</p>
+            <p>{{ ticket.requester }} à demandé une critique</p>
+            <p>{{ ticket.title }}</p>
+            <p>{{ ticket.description }}</p>
+            <p><img src="{{ ticket.image.url }}" /></p>
+            {% if not ticket.review %}
+            <p><a href="{% url 'ticket-review' ticket.id %}"><button type="button" class="btn btn-dark">Créer une
+                        critique</button></a></p>
+            {% endif %}
+            <p><a href="{% url 'change-ticket' ticket.id %}"><button type="button" class="btn btn-dark">Modifier</button></a></p>
+            {% endfor %}
 
+        </div>
     </div>
 </div>
 
