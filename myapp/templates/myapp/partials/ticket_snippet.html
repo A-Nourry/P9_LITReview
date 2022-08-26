@@ -1,0 +1,12 @@
+{% load post_extras %}
+
+<p>{{ ticket.date_created|get_posted_at_display }}</p>
+<p>{% get_poster_display ticket.requester %} a demandé une critique</p>
+<p>{{ ticket.title }}</p>
+<p>{{ ticket.description }}</p>
+<p><img src="{{ ticket.image.url }}" /></p>
+{% if not ticket.review %}
+<p><a href="{% url 'ticket-review' ticket.id %}"><button type="button" class="btn btn-dark">Créer une
+            critique</button></a></p>
+{% endif %}
+<p><a href="{% url 'change-ticket' ticket.id %}"><button type="button" class="btn btn-dark">Modifier</button></a></p>

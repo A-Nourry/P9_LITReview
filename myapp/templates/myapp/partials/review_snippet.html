@@ -1,0 +1,13 @@
+{% load post_extras %}
+
+<p>{{ review.date_created|get_posted_at_display }}</p>
+<p>{{ review.title }} - {{ review.rating }}</p>
+<p>{{ review.comment }}</p>
+<p>Posté par {% get_poster_display review.original_poster %}</p>
+<div class="col-md-6">
+    <p>Ticket - {{ review.ticket.requester }}</p>
+    <p>{{ review.ticket.title }}</p>
+    <p>{{ review.ticket.description }}</p>
+    <p><img src="{{ review.ticket.image.url }}" /></p>
+</div>
+<p><a href="{% url 'change-review' review.ticket_id %}"><button type="button" class="btn btn-dark">Modifier</button></a></p>
