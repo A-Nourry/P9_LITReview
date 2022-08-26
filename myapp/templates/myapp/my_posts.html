@@ -8,27 +8,16 @@
     <div class="row">
         <div class="col-md-12">
 
+            {% for instance in posts %}
 
-            {% for review in reviews %}
-            <p>{{ review.title }} - {{ review.rating }}</p>
-            <p>{{ review.comment }}</p>
-            <p>Posté par {{ review.original_poster }}</p>
-            <div class="col-md-6">
-                <p>Ticket - {{ review.ticket.requester }}</p>
-                <p>{{ review.ticket.title }}</p>
-                <p>{{ review.ticket.description }}</p>
-                <p><img src="{{ review.ticket.image.url }}" /></p>
-            </div>
-            {% endfor %}
+            {% if instance.content_type == 'REVIEW' %}
+            {% include 'myapp/partials/review_snippet.html' with review=instance %}
 
-            {% for ticket in tickets %}
-            <p>{{ ticket.requester }} à demandé une critique</p>
-            <p>{{ ticket.title }}</p>
-            <p>{{ ticket.description }}</p>
-            <p><img src="{{ ticket.image.url }}" /></p>
-            {% if not ticket.review %}
-            <p><a href="{% url 'ticket-review' ticket.id %}"><button type="button" class="btn btn-dark">Créer une critique</button></a></p>
+            {% elif instance.content_type == 'TICKET' %}
+            {% include 'myapp/partials/ticket_snippet.html' with ticket=instance %}
+
             {% endif %}
+
             {% endfor %}
 
         </div>
