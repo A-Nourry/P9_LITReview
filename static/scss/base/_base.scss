@@ -1,0 +1,14 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: $primary-color;
+    color: aliceblue;
+}
+
+.container .main {
+    width: 50%;
+    border-top: 5px;
+  }
+
+#brand {
+    font-size: 30px;
+}

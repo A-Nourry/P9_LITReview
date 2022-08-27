@@ -1,0 +1,25 @@
+.navbar {
+    background-color: $secondary-color;
+    border-bottom: 10px;
+}
+
+.text-bg-custom {
+    background-color: $secondary-color;
+  }
+
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: white;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: $secondary-color;
+    border-radius: 4px/4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: $secondary-color;
+  }
