@@ -1,12 +1,25 @@
 {% load post_extras %}
 
-<p>{{ ticket.date_created|get_posted_at_display }}</p>
-<p>{% get_poster_display ticket.requester %} a demandé une critique</p>
-<p>{{ ticket.title }}</p>
-<p>{{ ticket.description }}</p>
-<p><img src="{{ ticket.image.url }}" /></p>
-{% if not ticket.review %}
-<p><a href="{% url 'ticket-review' ticket.id %}"><button type="button" class="btn btn-dark">Créer une
+<div class="row">
+
+  <div class="card border-transparent bg-transparent bg-gradient mb-3 text-white" style="max-width: 100%;">
+    <div class="card-header d-flex justify-content-between">
+      <span class="badge text-bg-dark">Ticket</span>
+      <span>{% get_poster_display ticket.requester %} demandé une critique</span>
+      <span>{{ ticket.date_created|get_posted_at_display }}</span>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ ticket.title }}</h5>
+      <p class="card-text">{{ ticket.description }}</p>
+      <p><img src="{{ ticket.image.url }}" /></p>
+
+      {% if not ticket.review %}
+      <p><a href="{% url 'ticket-review' ticket.id %}"><button type="button" class="btn btn-custom">Créer une
             critique</button></a></p>
-{% endif %}
-<p><a href="{% url 'change-ticket' ticket.id %}"><button type="button" class="btn btn-dark">Modifier</button></a></p>
+      {% endif %}
+      <p><a href="{% url 'change-ticket' ticket.id %}"><button type="button" class="btn btn-custom">Modifier</button></a>
+      </p>
+    </div>
+  </div>
+
+</div>
