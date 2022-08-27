@@ -1,45 +1,51 @@
+body {
+  font-family: "Courier New", Courier, monospace;
+  background-color: rgb(27, 60, 97);
+  color: aliceblue;
+}
+
 .container .main {
   width: 50%;
   border-top: 5px;
 }
 
-body {
-    font-family: 'Courier New', Courier, monospace;
-    background-color: rgb(65, 104, 148);
-    color: aliceblue;
+.bg-custom {
+  background-color: rgb(51, 82, 117);
+}
+
+#brand {
+  font-size: 30px;
 }
 
 .navbar {
-    background-color: rgb(27, 60, 97);
-    border-bottom: 10px;
-}
-
-.btn-custom {
-    background-color: rgb(27, 60, 97);
-    color: aliceblue;
+  background-color: rgb(51, 82, 117);
+  border-bottom: 10px;
 }
 
 .text-bg-custom {
   background-color: rgb(27, 60, 97);
 }
 
-#brand {
-    font-size: 30px;
+::-webkit-scrollbar {
+  width: 12px;
 }
 
-::-webkit-scrollbar {
-    width: 12px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: white;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: rgb(27, 60, 97);
-    border-radius: 4px/4px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgb(27, 60, 97);
-  }
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(27, 60, 97);
+  border-radius: 4px/4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(27, 60, 97);
+}
+
+.btn-custom {
+  background-color: rgb(51, 82, 117);
+  color: aliceblue;
+}
+
+/*# sourceMappingURL=style.css.map */
