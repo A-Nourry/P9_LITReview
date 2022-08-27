@@ -1,13 +1,48 @@
 {% load post_extras %}
+{% load static %}
+<div class="row">
 
-<p>{{ review.date_created|get_posted_at_display }}</p>
-<p>{{ review.title }} - {{ review.rating }}</p>
-<p>{{ review.comment }}</p>
-<p>Posté par {% get_poster_display review.original_poster %}</p>
-<div class="col-md-6">
-    <p>Ticket - {{ review.ticket.requester }}</p>
-    <p>{{ review.ticket.title }}</p>
-    <p>{{ review.ticket.description }}</p>
-    <p><img src="{{ review.ticket.image.url }}" /></p>
+    <div class="card border-transparent bg-transparent bg-gradient mb-3 text-white" style="max-width: 100%;">
+        <div class="card-header d-flex justify-content-between">
+            <span class="badge text-bg-dark">Critique</span>
+            <span>{% get_poster_display review.original_poster %} publié une critique</span>
+            <span class="">{{ review.date_created|get_posted_at_display }}</span>
+        </div>
+        <div class="card-body">
+
+            {% if review.rating == 0 %}
+            <h5 class="card-title">{{ review.title }} - <img src="{% static 'images/stars/0-star.png' %}" width="105"
+                    height="20" class="d-inline-block align-text-top"></h5>
+            {% elif review.rating == 1 %}
+            <h5 class="card-title">{{ review.title }} - <img src="{% static 'images/stars/1-star.png' %}" width="105"
+                    height="20" class="d-inline-block align-text-top"></h5>
+            {% elif review.rating == 2 %}
+            <h5 class="card-title">{{ review.title }} - <img src="{% static 'images/stars/2-stars.png' %}" width="105"
+                    height="20" class="d-inline-block align-text-top"></h5>
+            {% elif review.rating == 3 %}
+            <h5 class="card-title">{{ review.title }} - <img src="{% static 'images/stars/3-stars.png' %}" width="105"
+                    height="20" class="d-inline-block align-text-top"></h5>
+            {% elif review.rating == 4 %}
+            <h5 class="card-title">{{ review.title }} - <img src="{% static 'images/stars/4-stars.png' %}" width="105"
+                    height="20" class="d-inline-block align-text-top"></h5>
+            {% elif review.rating == 5 %}
+            <h5 class="card-title">{{ review.title }} - <img src="{% static 'images/stars/5-stars.png' %}" width="105"
+                    height="20" class="d-inline-block align-text-top"></h5>
+            {% endif %}
+            <p class="card-text">{{ review.comment }}</p>
+
+            <div class="card text-bg-dark bg-gradient mb-3" style="max-width: 80%;">
+                <div class="card-header">Ticket - {{ review.ticket.requester }}</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ review.ticket.title }}</h5>
+                    <p class="card-text">{{ review.ticket.description }}</p>
+                    <p><img src="{{ review.ticket.image.url }}" /></p>
+                </div>
+            </div>
+
+            <p><a href="{% url 'change-review' review.ticket_id %}"><button type="button"
+                        class="btn btn-custom">Modifier</button></a></p>
+        </div>
+    </div>
+
 </div>
-<p><a href="{% url 'change-review' review.ticket_id %}"><button type="button" class="btn btn-dark">Modifier</button></a></p>
