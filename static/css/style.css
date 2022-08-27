@@ -1,3 +1,8 @@
+.container .main {
+  width: 50%;
+  border-top: 5px;
+}
+
 body {
     font-family: 'Courier New', Courier, monospace;
     background-color: rgb(65, 104, 148);
@@ -12,6 +17,10 @@ body {
 .btn-custom {
     background-color: rgb(27, 60, 97);
     color: aliceblue;
+}
+
+.text-bg-custom {
+  background-color: rgb(27, 60, 97);
 }
 
 #brand {
