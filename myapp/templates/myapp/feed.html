@@ -3,7 +3,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+<div class="d-grid gap-5 d-md-flex justify-content-md-center">
     <p><a href="{% url 'create-ticket' %}"><button type="button" class="btn btn-custom">Demander une
                 critique</button></a></p>
     <p><a href="{% url 'create-review' %}"><button type="button" class="btn btn-custom">Créer une critique</button></a>
@@ -11,23 +11,19 @@
 </div>
 
 <div class="container main_feed">
-    <div class="row">
-        <div class="col-md-12">
+    
+    {% for instance in posts %}
 
-            {% for instance in posts %}
+    {% if instance.content_type == 'REVIEW' %}
+    {% include 'myapp/partials/review_snippet.html' with review=instance %}
 
-            {% if instance.content_type == 'REVIEW' %}
-            {% include 'myapp/partials/review_snippet.html' with review=instance %}
+    {% elif instance.content_type == 'TICKET' %}
+    {% include 'myapp/partials/ticket_snippet.html' with ticket=instance %}
 
-            {% elif instance.content_type == 'TICKET' %}
-            {% include 'myapp/partials/ticket_snippet.html' with ticket=instance %}
+    {% endif %}
 
-            {% endif %}
+    {% endfor %}
 
-            {% endfor %}
-
-        </div>
-    </div>
 </div>
 
 {% endblock content %}
