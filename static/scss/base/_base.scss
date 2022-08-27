@@ -1,6 +1,6 @@
 body {
     font-family: 'Courier New', Courier, monospace;
-    background-color: $primary-color;
+    background-color: $secondary-color;
     color: aliceblue;
 }
 
@@ -8,6 +8,10 @@ body {
     width: 50%;
     border-top: 5px;
   }
+
+.bg-custom {
+    background-color: $primary-color;
+}
 
 #brand {
     font-size: 30px;
