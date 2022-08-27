@@ -1,0 +1,22 @@
+{
+  "name": "p9_litreview",
+  "version": "1.0.0",
+  "description": "application du 9e projet OpenclassRooms",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./static/scss/main.scss:./static/css/style.css"
+  },
+  "dependencies": {
+    "bootstrap": "5.2.0"
+    },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/A-Nourry/P9_LITReview.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/A-Nourry/P9_LITReview/issues"
+  },
+  "homepage": "https://github.com/A-Nourry/P9_LITReview#readme"
+}
