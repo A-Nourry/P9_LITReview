@@ -20,5 +20,6 @@ def get_posted_at_display(posted_at):
 @register.simple_tag(takes_context=True)
 def get_poster_display(context, user):
     if user == context["user"]:
-        return "vous"
-    return user.username
+        return "vous avez"
+    else:
+        return f'{user.username} a'
