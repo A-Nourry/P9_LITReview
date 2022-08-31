@@ -33,8 +33,9 @@ class ReviewForm(forms.ModelForm):
 
 
 class EditReviewForm(forms.ModelForm):
-    edit_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     CHOICES = [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5)]
+
+    edit_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
     title = forms.CharField(
         widget=forms.TextInput(
@@ -85,6 +86,22 @@ class TicketForm(forms.ModelForm):
 
 class EditTicketForm(forms.ModelForm):
     edit_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
+    title = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+            }
+        )
+    )
+
+    description = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                "class": "form-control",
+            }
+        )
+    )
 
     class Meta:
         model = models.Ticket
