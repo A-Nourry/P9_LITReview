@@ -14,7 +14,7 @@ def model_type(value):
 
 @register.filter
 def get_posted_at_display(posted_at):
-    return f'{posted_at.strftime("%Hh%M, %d %b %y")}'
+    return f'{posted_at.strftime("%H:%M, %d %B %Y")}'
 
 
 @register.simple_tag(takes_context=True)
