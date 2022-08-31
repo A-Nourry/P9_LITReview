@@ -16,7 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.views import (
-    LoginView,
     LogoutView,
 )
 from django.conf import settings
@@ -27,13 +26,7 @@ import myapp.views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path(
-        "",
-        LoginView.as_view(
-            template_name="authentication/login.html", redirect_authenticated_user=True
-        ),
-        name="login",
-    ),
+    path("", authentication.views.LoginPageView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path("signup/", authentication.views.signup_page, name="signup"),
     path("feed/", myapp.views.feed, name="feed"),
