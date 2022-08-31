@@ -31,7 +31,7 @@
             {% endif %}
             <p class="card-text">{{ review.comment }}</p>
 
-            <div class="card text-bg-dark bg-gradient mb-3" style="max-width: 80%;">
+            <div class="card bg-custom bg-gradient mb-3" style="max-width: 80%;">
                 <div class="card-header">Ticket - {{ review.ticket.requester }}</div>
                 <div class="card-body">
                     <h5 class="card-title">{{ review.ticket.title }}</h5>
@@ -39,9 +39,10 @@
                     <p><img src="{{ review.ticket.image.url }}" /></p>
                 </div>
             </div>
-
+            {% if review.original_poster == request.user %}
             <p><a href="{% url 'change-review' review.ticket_id %}"><button type="button"
                         class="btn btn-custom">Modifier</button></a></p>
+            {% endif %}
         </div>
     </div>
 

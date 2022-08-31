@@ -29,7 +29,7 @@
                     <div class="flex-grow-1">
 
                         <a class="navbar-brand" href="{% url 'feed' %}" id="brand"><img src="{% static 'images/LR_logo.png' %}"
-                                alt="logo" width="35" height="35" class="d-inline-block align-text-top">LITReview</a>
+                                alt="logo" width="35" height="35" class="d-inline-block align-text-top"><strong>LIT</strong>Review</a>
 
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target=".dual-collapse2">
@@ -62,24 +62,15 @@
     </header>
 
     <!-- Spacer -->
-    <div class="d-flex justify-content-center justify-content-lg-between p-2">
+    <div class="d-flex justify-content-center justify-content-lg-between p-4">
     </div>
 
-    <div class="container main">
+    <div class="container main p-5">
         {% block content %}{% endblock content %}
     </div>
 
-    <!-- Spacer -->
-    <div class="d-flex justify-content-center justify-content-lg-between p-2">
-    </div>
+    <footer class="footer text-center text-lg-start bg-custom text-white mt-auto p-2">
 
-    <footer class="footer text-center text-lg-start bg-custom text-white mt-auto"">
-
-      <!-- Spacer -->
-      <div class="d-flex justify-content-center justify-content-lg-between p-2">
-      </div>
-
-      
         <!-- Section: Links  -->
         <section class="">
           <div class="container text-center text-md-start mt-5">
@@ -113,13 +104,7 @@
                   <a href="https://getbootstrap.com/" class="text-reset">Bootstrap</a>
                 </p>
               </div>
-              <!-- Grid column -->
-      
-              <!-- Grid column -->
-            
-              <!-- Grid column -->
-      
-              <!-- Grid column -->
+
               <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                 <!-- Links -->
                 <h6 class="text-uppercase fw-bold mb-4">Contact</h6>

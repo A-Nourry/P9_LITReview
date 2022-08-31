@@ -2,16 +2,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Inscription</h2>
-    {% if form.errors %}
-        {{ form.errors }}
-    {% endif %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <h2 class="d-flex justify-content-center">Inscription</h2>
+            {% if form.errors %}
+            {{ form.errors }}
+            {% endif %}
 
-<form method="post">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <button type="submit">S'inscrire</button>
-</form>
-<a href="{% url 'login' %}"><button type="submit">Retour</button></a>
-
+            <div class=" mb-3">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="p-3">{{ form.username }}</div>
+                    <div class="p-3">{{ form.password1 }}</div>
+                    <div class="p-3">{{ form.password2 }}</div>
+                    <div class="d-flex justify-content-end"><a href="{% url 'login' %}"><button type="button"
+                                class="btn btn-custom m-3">Retourer</button></a><button type="submit"
+                            class="btn btn-custom m-3">S'inscrire</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

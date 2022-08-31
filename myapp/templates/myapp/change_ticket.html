@@ -3,14 +3,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method="post">
-    {{ edit_form.as_p }}
-    {% csrf_token %}
-    <button type="submit" >Envoyer</button>
-</form>
-<form method="post">
-    {{ delete_form.as_p }}
-    {% csrf_token %}
-    <button type="submit" >Supprimer</button>
-</form>
+<div class="container">
+    <div class="row">
+        <h3 class="d-flex justify-content-center">Modifier un ticket</h3>
+        <form method="post" enctype="multipart/form-data">
+            <p class="m-2">Titre : </p>
+            <div class="p-3">{{ edit_form.title }}</div>
+            <p class="m-2">Description : </p>
+            <div class="p-3">{{ edit_form.description }}</div>
+            <p class="m-2">Image : </p>
+            <div class="p-3"><img src="{{ ticket.image.url }}" /></div>
+                {{ edit_form.image }}
+                {% csrf_token %}
+            <div class="col-md-12 d-flex justify-content-end p-2">
+                <button type="submit" class="btn btn-custom">Envoyer</button>
+            </div>
+        </form>
+        <form method="post">
+            {{ delete_form.as_p }}
+            {% csrf_token %}
+            <div class="col-md-12 d-flex justify-content-end p-2">
+                <button type="submit" class="btn btn-custom">Supprimer</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 {% endblock content %}

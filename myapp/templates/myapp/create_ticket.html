@@ -3,10 +3,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Créer un ticket</h2>
-    <form method="post" enctype="multipart/form-data">
-        {{ ticket_form.as_p }}
-        {% csrf_token %}
-        <button type="submit" >Envoyer</button>
-    </form>
+<div class="container">
+    <div class="row">
+        <h2 class="d-flex justify-content-center">Créer un ticket</h2>
+        <div class="">
+            <form method="post" enctype="multipart/form-data">
+                <p class="m-2">Titre : </p>
+            <div class="p-2">{{ ticket_form.title }}</div>
+            <p class="m-2">Description : </p>
+            <div class="m-2">{{ ticket_form.description }}</div>
+            <p class="m-2">Image : </p>
+            <div class="p-2">{{ ticket_form.image }}</div>
+                {% csrf_token %}
+                <div class="col-md-12 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-custom">Envoyer</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock content %}

@@ -3,20 +3,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Modifier votre critique</h2>
-<p>Ticket - {{ ticket.requester }}</p>
-<p>{{ ticket.title }}</p>
-<p>{{ ticket.description }}</p>
-<p><img src="{{ ticket.image.url }}" /></p>
-
-<form method="post">
-    {{ edit_form.as_p }}
-    {% csrf_token %}
-    <button type="submit" >Envoyer</button>
-</form>
-<form method="post">
-    {{ delete_form.as_p }}
-    {% csrf_token %}
-    <button type="submit" >Supprimer</button>
-</form>
+<div class="card border-transparent bg-transparent bg-gradient mb-3 text-white" style="max-width: 100%;">
+    <div class="card-header d-flex justify-content-center">
+        <span class="">Modifier votre critique</span>
+    </div>
+    <div class="card-body">
+        <div class="card bg-custom bg-gradient mb-3" style="max-width: 80%;">
+        <div class="card-header">Ticket - {{ ticket.requester }}</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ ticket.title }}</h5>
+            <p class="card-text">{{ ticket.description }}</p>
+            <p><img src="{{ ticket.image.url }}" /></p>
+        </div>
+        </div>
+            <form method="post">
+                {{ edit_form.as_p }}
+                {% csrf_token %}
+                <button type="submit" >Envoyer</button>
+            </form>
+            <form method="post">
+                {{ delete_form.as_p }}
+                {% csrf_token %}
+                <button type="submit" >Supprimer</button>
+            </form>
+    </div>
+</div>
 {% endblock content %}

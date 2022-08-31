@@ -17,8 +17,11 @@
       <p><a href="{% url 'ticket-review' ticket.id %}"><button type="button" class="btn btn-custom">Créer une
             critique</button></a></p>
       {% endif %}
+
+      {% if ticket.requester == request.user %}
       <p><a href="{% url 'change-ticket' ticket.id %}"><button type="button" class="btn btn-custom">Modifier</button></a>
       </p>
+      {% endif %}
     </div>
   </div>
 

@@ -1,6 +1,9 @@
 <!-- myapp/templates/myapp/feed.html -->
 
 {% extends 'base.html' %}
+{% load tz %}
+
+{{ value|timezone:"Europe/Paris" }}
 
 {% block content %}
 <div class="d-grid gap-5 d-md-flex justify-content-md-center">
