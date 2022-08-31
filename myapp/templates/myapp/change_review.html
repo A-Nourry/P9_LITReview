@@ -5,27 +5,47 @@
 {% block content %}
 <div class="card border-transparent bg-transparent bg-gradient mb-3 text-white" style="max-width: 100%;">
     <div class="card-header d-flex justify-content-center">
-        <span class="">Modifier votre critique</span>
+        <span class=""><h3>Modifier votre critique</h3></span>
     </div>
     <div class="card-body">
-        <div class="card bg-custom bg-gradient mb-3" style="max-width: 80%;">
-        <div class="card-header">Ticket - {{ ticket.requester }}</div>
-        <div class="card-body">
-            <h5 class="card-title">{{ ticket.title }}</h5>
-            <p class="card-text">{{ ticket.description }}</p>
-            <p><img src="{{ ticket.image.url }}" /></p>
-        </div>
-        </div>
-            <form method="post">
-                {{ edit_form.as_p }}
-                {% csrf_token %}
-                <button type="submit" >Envoyer</button>
-            </form>
-            <form method="post">
-                {{ delete_form.as_p }}
-                {% csrf_token %}
-                <button type="submit" >Supprimer</button>
-            </form>
+
+
+            <div class="card bg-custom bg-gradient">
+                <div class="card-header">Ticket - {{ ticket.requester }}</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ ticket.title }}</h5>
+                    <p class="card-text">{{ ticket.description }}</p>
+                    <p><img src="{{ ticket.image.url }}" /></p>
+                </div>
+            </div>        
+
+        <form class="p-3" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ edit_form.edit_review }}
+            <p class="m-2">Titre : </p>
+            <span class="m-2">{{ edit_form.title }}</span>
+            <p class="m-2">Note : </p>
+            <div class="d-flex">
+                <span class="p-2">{{ edit_form.rating.0 }}</span>
+                <span class="p-2">{{ edit_form.rating.1 }}</span>
+                <span class="p-2">{{ edit_form.rating.2 }}</span>
+                <span class="p-2">{{ edit_form.rating.3 }}</span>
+                <span class="p-2">{{ edit_form.rating.4 }}</span>
+                <span class="p-2">{{ edit_form.rating.5 }}</span>
+            </div>
+            <p class="m-2">Commentaire : </p>
+            <span class="m-2">{{ edit_form.comment }}</span>
+            <div class="col-md-12 d-flex justify-content-end">
+                <button type="submit" class="btn btn-custom">Envoyer</button>
+                </div>
+        </form>
+        <form method="post">
+            {{ delete_form.as_p }}
+            {% csrf_token %}
+            <div class="col-md-12 d-flex justify-content-end">
+                <button type="submit" class="btn btn-custom">Supprimer</button>
+                </div>
+        </form>
     </div>
 </div>
 {% endblock content %}
