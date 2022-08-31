@@ -113,11 +113,11 @@ def create_ticket(request):
 def change_review(request, review_id):
     review = get_object_or_404(models.Review, ticket_id=review_id)
     ticket = get_object_or_404(models.Ticket, id=review_id)
-    edit_form = forms.ReviewForm(instance=review)
+    edit_form = forms.EditReviewForm(instance=review)
     delete_form = forms.DeletePostForm()
     if request.method == "POST":
         if "edit_review" in request.POST:
-            edit_form = forms.ReviewForm(request.POST, instance=review)
+            edit_form = forms.EditReviewForm(request.POST, instance=review)
             if edit_form.is_valid():
                 edit_form.save()
                 return redirect("feed")
@@ -137,11 +137,11 @@ def change_review(request, review_id):
 @login_required
 def change_ticket(request, ticket_id):
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
-    edit_form = forms.TicketForm(instance=ticket)
+    edit_form = forms.EditTicketForm(instance=ticket)
     delete_form = forms.DeletePostForm()
     if request.method == "POST":
         if "edit_ticket" in request.POST:
-            edit_form = forms.TicketForm(request.POST, request.FILES, instance=ticket)
+            edit_form = forms.EditTicketForm(request.POST, request.FILES, instance=ticket)
             if edit_form.is_valid():
                 edit_form.save()
                 return redirect("feed")
