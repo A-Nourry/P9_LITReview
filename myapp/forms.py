@@ -109,9 +109,22 @@ class EditTicketForm(forms.ModelForm):
 
 
 class FollowUsersForm(forms.ModelForm):
+    follows = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Nom d'utilisateur",
+            }
+        )
+    )
+
     class Meta:
         model = get_user_model()
         fields = ["follows"]
+
+
+class UnfollowUserForm(forms.ModelForm):
+    unfollow_user = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
 
 class DeletePostForm(forms.Form):
