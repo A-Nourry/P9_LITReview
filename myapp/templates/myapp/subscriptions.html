@@ -3,16 +3,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Suivre d'autres utilisateurs</h2>
-    <form method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button type="submit" >Envoyer</button>
-    </form>
-<h2>Abonnements</h2>
+<div class="container">
+    <div class="row">
 
-<p>{{ users }}</p>
+        <h2 class="d-flex justify-content-center">Suivre d'autres utilisateurs</h2>
+        <form class="d-flex" method="post">
+            {% csrf_token %}
+            <div class="p-4 flex-fill">{{ form.follows }}</div>
+            <div class="p-4 d-flex justify-content-end">
+                <button type="submit" class="btn btn-custom">Envoyer</button>
+            </div>
+        </form>
+        <p>{{ message }}</p>
 
-<h2>Abonnés</h2>
+        <h2 class="d-flex justify-content-center">Abonnements</h2>
+        {% for user in followed %}
+        <form class="d-flex" method="post">
+            {% csrf_token %}
+            <table class="table table-borderless bg-transparent bg-gradient border-transparent text-white">
+                <tbody>
+                    <th scope="col">{{ user }}</th>
+                    <th scope="col"><div class=" d-flex justify-content-end">
+                        <button type="submit" class="btn btn-custom">Désabonner</button>
+                    </div></th>
+                </tbody>
+            </table>  
+        </form>
+        {% endfor %}
+
+
+        <h2 class="d-flex justify-content-center">Abonnés</h2>
+        {% for user in followers %}
+        <table class="table table-borderless bg-transparent bg-gradient text-white">
+            <tbody>
+                <th scope="col">{{ user }}</th>
+            </tbody>
+        </table>
+        {% endfor %}
+
+
+    </div>
+</div>
+
 
 {% endblock content %}
