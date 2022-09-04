@@ -16,19 +16,21 @@
 
                 <!--Ticket form-->
                 <div class="card-header">
-                    <p class="m-2">Titre : </p>
+                    <h5 class="p-3">Livre / Article</h5>
+                    <p class="m-2">Titre</p>
                     <div class="p-2">{{ ticket_form.title }}</div>
-                    <p class="m-2">Description : </p>
+                    <p class="m-2">Description</p>
                     <div class="m-2">{{ ticket_form.description }}</div>
-                    <p class="m-2">Image : </p>
+                    <p class="m-2">Image</p>
                     <div class="p-2">{{ ticket_form.image }}</div>
                 </div>
 
                 <!--Review form-->
-                <p class="m-2">Titre : </p>
+                <h5 class="p-3">Critique</h5>
+                <p class="m-2">Titre</p>
                 <span class="p-2">{{ review_form.title }}</span>
 
-                <p class="m-2">Note : </p>
+                <p class="m-2">Note</p>
                 <div class="d-flex">
                     <span class="p-2">{{ review_form.rating.0 }}</span>
                     <span class="p-2">{{ review_form.rating.1 }}</span>
@@ -38,7 +40,7 @@
                     <span class="p-2">{{ review_form.rating.5 }}</span>
                 </div>
 
-                <p class="m-2">Commentaire : </p>
+                <p class="m-2">Commentaire</p>
                 <span class="p-2">{{ review_form.comment }}</span>
 
                 <div class="col-md-12 d-flex justify-content-end p-2">

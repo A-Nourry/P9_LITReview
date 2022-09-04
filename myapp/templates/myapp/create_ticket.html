@@ -8,11 +8,11 @@
         <h2 class="d-flex justify-content-center">Créer un ticket</h2>
         <div class="">
             <form method="post" enctype="multipart/form-data">
-                <p class="m-2">Titre : </p>
+                <p class="m-2">Titre</p>
             <div class="p-2">{{ ticket_form.title }}</div>
-            <p class="m-2">Description : </p>
+            <p class="m-2">Description</p>
             <div class="m-2">{{ ticket_form.description }}</div>
-            <p class="m-2">Image : </p>
+            <p class="m-2">Image</p>
             <div class="p-2">{{ ticket_form.image }}</div>
                 {% csrf_token %}
                 <div class="col-md-12 d-flex justify-content-end">
