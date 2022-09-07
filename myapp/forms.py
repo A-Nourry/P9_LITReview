@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 
 from . import models
 
+User = get_user_model()
+
 
 class ReviewForm(forms.ModelForm):
     CHOICES = [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5)]
@@ -119,11 +121,11 @@ class FollowUsersForm(forms.ModelForm):
     )
 
     class Meta:
-        model = get_user_model()
+        model = User
         fields = ["follows"]
 
 
-class UnfollowUserForm(forms.ModelForm):
+class UnfollowUserForm(forms.Form):
     unfollow_user = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
 

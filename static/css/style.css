@@ -1,6 +1,6 @@
 body {
   font-family: "Courier New", Courier, monospace;
-  background-color: rgb(27, 60, 97);
+  background-color: rgb(20, 46, 75);
   color: aliceblue;
 }
 
@@ -20,10 +20,12 @@ body {
 .navbar {
   background-color: rgb(51, 82, 117);
   border-bottom: 10px;
+  position: fixed;
+  z-index: 9999;
 }
 
 .text-bg-custom {
-  background-color: rgb(27, 60, 97);
+  background-color: rgb(20, 46, 75);
 }
 
 ::-webkit-scrollbar {
@@ -31,16 +33,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: white;
+  background: rgb(51, 82, 117);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(27, 60, 97);
+  background: rgb(20, 46, 75);
   border-radius: 4px/4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(27, 60, 97);
+  background: rgb(20, 46, 75);
 }
 
 .btn-custom {

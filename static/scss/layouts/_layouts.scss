@@ -1,6 +1,8 @@
 .navbar {
     background-color: $primary-color;
     border-bottom: 10px;
+    position: fixed;
+    z-index: 9999;
 }
 
 .text-bg-custom {
@@ -12,7 +14,7 @@
   }
   
   ::-webkit-scrollbar-track {
-    background: white;
+    background: $primary-color;
   }
   
   ::-webkit-scrollbar-thumb {
