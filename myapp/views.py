@@ -58,27 +58,32 @@ def subscriptions(request):
     followed = request.user.follows.all()
     followers = User.objects.filter(follows=request.user.id)
     follow_form = forms.FollowUsersForm()
+    unfollow_form = forms.UnfollowUserForm()
     message = ""
 
     if request.method == "POST":
         if "unfollow_user" in request.POST:
-            delete_form = forms.UnfollowsUserForm(request.POST)
-            if delete_form.is_valid():
-                request.user.follows.remove()
-                return redirect("subscriptions")
-
-        if follow_form.is_valid():
-            follow_form.save(commit=False)
-            following_user = User.objects.get(username="david")
-            if following_user in User.objects.all():
-                request.user.follows.add(following_user)
+            unfollow_form = forms.UnfollowUserForm(request.POST)
+            if unfollow_form.is_valid():
+                username = User.objects.get(username=request.POST["user"])
+                request.user.follows.remove(username)
                 request.user.save()
                 return redirect("subscriptions")
 
-        message = "Nom d'utilisateur invalide."
+        follow_form = forms.FollowUsersForm(request.POST)
+        if follow_form.is_valid():
+            try:
+                following_user = User.objects.get(username=request.POST["follows"])
+                follow_form.save(commit=False)
+                request.user.follows.add(following_user)
+                request.user.save()
+                return redirect("subscriptions")
+            except User.DoesNotExist:
+                message = "Nom d'utilisateur invalide."
 
     context = {
         "form": follow_form,
+        "unfollow_form": unfollow_form,
         "followed": followed,
         "followers": followers,
         "message": message,
@@ -142,11 +147,13 @@ def change_review(request, review_id):
             if edit_form.is_valid():
                 edit_form.save()
                 return redirect("feed")
-        if "delete_post" in request.POST:
+
+        elif "delete_post" in request.POST:
             delete_form = forms.DeletePostForm(request.POST)
             if delete_form.is_valid():
                 review.delete()
                 return redirect("feed")
+
     context = {
         "edit_form": edit_form,
         "delete_form": delete_form,
